@@ -1,0 +1,13 @@
+.htaccess
+*.log
+*.txt
+*.md
+/cache
+/log
+/config
+/upload
+/localization
+/docs
+/download
+/img
+/themes/default-bootstrap/cache
