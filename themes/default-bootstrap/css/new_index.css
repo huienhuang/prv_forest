@@ -1,0 +1,10 @@
+
+
+#home_cates >div {margin-top:40px;margin-bottom:20px}
+#home_cates .thumbnail {border-color:#fff}
+#home_cates .thumbnail:hover {border-color:#ddd}
+#home_cates .caption {color:#6d4850}
+
+
+#block_top_menu,#search_block_top,.shopping_cart {display:none}
+#header_logo {float:none !important;margin:0 auto}

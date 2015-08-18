@@ -46,6 +46,7 @@
             		<span>{mailto address=$blockcontactinfos_email|escape:'html':'UTF-8' encode="hex"}</span>
             	</li>
             {/if}
+	    <li><i class="icon-calendar"></i> <span>Monday - Friday / 8:00AM - 5:30PM</span></li>
         </ul>
     </div>
 </section>
