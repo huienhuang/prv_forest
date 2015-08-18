@@ -37,6 +37,15 @@ class IndexControllerCore extends FrontController
 		parent::initContent();
 		$this->addCSS(_THEME_CSS_DIR_.'new_index.css');
 
+		$cates = array();
+		foreach(Category::getHomeCategories($this->context->language->id) as $c) {
+			$cates[] = new Category($c['id_category'], $this->context->language->id);
+		}
+		
+		$this->context->smarty->assign(array(
+			'HomeCategories' => $cates
+		));
+		
 		/*
 		$this->context->smarty->assign(array('HOOK_HOME' => Hook::exec('displayHome'),
 			'HOOK_HOME_TAB' => Hook::exec('displayHomeTab'),

@@ -36,8 +36,10 @@
             {/if}
             {if $blockcontactinfos_phone != ''}
             	<li>
+			<a href="tel:{$blockcontactinfos_phone|escape:'html':'UTF-8'}">
             		<i class="icon-phone"></i>{l s='Call us now:' mod='blockcontactinfos'} 
             		<span>{$blockcontactinfos_phone|escape:'html':'UTF-8'}</span>
+			</a>
             	</li>
             {/if}
             {if $blockcontactinfos_email != ''}
