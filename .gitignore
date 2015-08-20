@@ -1,0 +1,15 @@
+.htaccess
+*.log
+*.txt
+*.md
+/cache
+/log
+/config
+/upload
+/localization
+/docs
+/download
+/img
+/themes/default-bootstrap/cache
+/admin270je38x0/import
+/admin270je38x0/export
