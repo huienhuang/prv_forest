@@ -128,6 +128,7 @@ class AdminImportControllerCore extends AdminController
 					'reference' => array('label' => $this->l('Reference')),
 					'ean13' => array('label' => $this->l('EAN13')),
 					'upc' => array('label' => $this->l('UPC')),
+					'short_desc' => array('label' => $this->l('Short Desc')),
 					'wholesale_price' => array('label' => $this->l('Wholesale price')),
 					'price' => array('label' => $this->l('Impact on price')),
 					'ecotax' => array('label' => $this->l('Ecotax')),
@@ -166,6 +167,7 @@ class AdminImportControllerCore extends AdminController
 					'supplier_reference' => '',
 					'ean13' => '',
 					'upc' => '',
+					'short_desc' => '',
 					'wholesale_price' => 0,
 					'price' => 0,
 					'ecotax' => 0,
@@ -2240,7 +2242,8 @@ class AdminImportControllerCore extends AdminController
 											(int)$info['minimal_quantity'],
 											$info['available_date'],
 											null,
-											$id_shop_list
+											$id_shop_list,
+											$info['short_desc']
 										);
 										$id_product_attribute_update = true;
 										if (isset($info['supplier_reference']) && !empty($info['supplier_reference']))
@@ -2269,7 +2272,8 @@ class AdminImportControllerCore extends AdminController
 								strval($info['upc']),
 								(int)$info['minimal_quantity'],
 								$id_shop_list,
-								$info['available_date']
+								$info['available_date'],
+								$info['short_desc']
 							);
 
 							if (isset($info['supplier_reference']) && !empty($info['supplier_reference']))

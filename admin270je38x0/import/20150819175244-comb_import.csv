@@ -1,0 +1,23 @@
+Product ID*;Attribute (Name:Type:Position)*;Value (Value:Position)*;Supplier reference;Reference;EAN13;UPC;Short Desc;Wholesale price;Impact on price;Ecotax;Quantity;Minimal quantity;Impact on weight;Default (0 = No, 1 = Yes);Combination available date;Image position;Image URL;Delete existing images (0 = No, 1 = Yes);ID / Name of shop;Advanced Stock Managment;Depends on stock;Warehouse
+10013;NO:select:0;10013:0;;8FP;;;8oz Pagoda|8oz|450 ct.;;;0;9999;1;0;1;;1;;0;0;0;0;
+10014;NO:select:0;10013:0;;16FP;;;16oz Pagoda|16oz|450 ct.;;;0;9999;1;0;0;;1;;0;0;0;0;
+10015;NO:select:0;10013:0;;26FP;;;26oz Pagoda|26oz|450 ct.;;;0;9999;1;0;0;;1;;0;0;0;0;
+10016;NO:select:0;10013:0;;32FP;;;32oz Pagoda|32oz|450 ct.;;;0;9999;1;0;0;;1;;0;0;0;0;
+10017;NO:select:0;10013:0;;64FP;;;64oz Pagoda|64oz|200 ct.;;;0;9999;1;0;0;;1;;0;0;0;0;
+10018;NO:select:0;10018:0;;W8FP;;;8oz White|8oz|450 ct.;;;0;9999;1;0;1;;1;;0;0;0;0;
+10019;NO:select:0;10018:0;;W16FP;;;16oz White|16oz|450 ct.;;;0;9999;1;0;0;;1;;0;0;0;0;
+10020;NO:select:0;10018:0;;W26FP;;;26oz White|26oz|450 ct.;;;0;9999;1;0;0;;1;;0;0;0;0;
+10021;NO:select:0;10018:0;;W32FP;;;32oz White|32oz|450 ct;;;0;9999;1;0;0;;1;;0;0;0;0;
+10000;NO:select:0;10000:0;;FT025;;;"1/4 lb. Red/White #25|4""x2.75""x1""|1000 ct.";;;0;9999;1;0;1;;1;;0;0;0;0;
+10001;NO:select:0;10000:0;;FT050;;;"1/2 lb. Red/White #50|4.35""x3.25""x1.25""|1000 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10002;NO:select:0;10000:0;;FT100;;;"1 lb. Red/White #100|5""x3.35""x1.5""|1000 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10003;NO:select:0;10000:0;;FT200;;;"2 lb. Red/White #200|6""x4""x1.5""|1000 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10004;NO:select:0;10000:0;;FT250;;;"2.5 lb. Red/White #25|05""x3.35""x1.5""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10005;NO:select:0;10000:0;;FT300;;;"3 lb. Red/White #300|7.2""x5""x2""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10006;NO:select:0;10006:0;;RP-06;;;"1-Compartment Round Plate|6""|1000 ct.";;;0;9999;1;0;1;;1;;0;0;0;0;
+10007;NO:select:0;10006:0;;RP-07;;;"1-Compartment Round Plate|7""|1000 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10008;NO:select:0;10006:0;;RP-09;;;"1-Compartment Round Plate|9""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10009;NO:select:0;10006:0;;RP-93;;;"3-Compartment Round Plate|9""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10010;NO:select:0;10006:0;;RP-10;;;"1-Compartment Round Plate|10""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10011;NO:select:0;10006:0;;RP-103;;;"3-Compartment Round Plate|10""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;
+10012;NO:select:0;10006:0;;OP-12;;;"1-Compartment Oval Plate 1|2""x10""|500 ct.";;;0;9999;1;0;0;;1;;0;0;0;0;

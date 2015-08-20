@@ -1514,7 +1514,7 @@ class ProductCore extends ObjectModel
 		$combination->default_on = (int)$default;
 		$combination->minimal_quantity = (int)$minimal_quantity;
 		$combination->available_date = $available_date ? pSQL($available_date) : '0000-00-00';
-                $combination->short_desc = pSQL($short_desc);
+                $combination->short_desc = $short_desc;
                 
 		if (count($id_shop_list))
 			$combination->id_shop_list = $id_shop_list;
@@ -1580,7 +1580,7 @@ class ProductCore extends ObjectModel
 		$combination->default_on = (int)$default;
 		$combination->minimal_quantity = (int)$minimal_quantity;
 		$combination->available_date = $available_date;
-                $combination->short_desc = pSQL($short_desc);
+                $combination->short_desc = $short_desc;
                 
 		if (count($id_shop_list))
 			$combination->id_shop_list = array_unique($id_shop_list);
