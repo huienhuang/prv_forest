@@ -587,9 +587,11 @@ class OrderOpcControllerCore extends ParentOrderController
 			).'</p>';
 
 		/* Bypass payment step if total is 0 */
+		/*
 		if ($this->context->cart->getOrderTotal() <= 0)
 			return '<p class="center"><button class="button btn btn-default button-medium" name="confirmOrder" id="confirmOrder" onclick="confirmFreeOrder();" type="submit"> <span>'.Tools::displayError('I confirm my order.').'</span></button></p>';
-
+		*/
+		
 		$return = Hook::exec('displayPayment');
 		if (!$return)
 			return '<p class="warning">'.Tools::displayError('No payment method is available for use at this time. ').'</p>';

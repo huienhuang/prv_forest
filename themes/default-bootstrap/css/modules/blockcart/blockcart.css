@@ -19,6 +19,9 @@
 
 @media(max-width:767px) { #header .shopping_cart {padding-top:20px} }
 
+#header .shopping_cart .cart-prices, #header .shopping_cart .products .price {display:none}
+#layer_cart >div >.layer_cart_cart >.layer_cart_row {display:none}
+
 .shopping_cart {
   width: 270px; }
   @media (max-width: 480px) {
@@ -321,7 +324,7 @@
   #layer_cart .layer_cart_cart {
     background: #fafafa;
     border-left: 1px solid #d6d4d4;
-    padding: 21px 30px 170px 30px;
+    padding: 21px 30px 100px 30px;
     -moz-border-radius: 0px 4px 4px 0px;
     -webkit-border-radius: 0px;
     border-radius: 0px 4px 4px 0px;

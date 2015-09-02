@@ -24,7 +24,7 @@
 *}
 
 <!-- Block Viewed products -->
-<div id="viewed-products_block_left" class="block">
+<div id="viewed-products_block_left" class="hidden-xs block">
 	<p class="title_block">{l s='Viewed products' mod='blockviewed'}</p>
 	<div class="block_content products-block">
 		<ul>

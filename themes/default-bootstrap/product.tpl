@@ -211,7 +211,7 @@
 					<div class="product_attributes clearfix">
 						{if isset($combinations)}
 						<table class="table" id="prod_attrs_tbl">
-						<thead><tr><th>SKU</th><th>Description</th><th>Count</th><th>Size</th></tr></thead>
+						<thead><tr><th>Model</th><th>Description</th><th>Count</th><th>Size</th></tr></thead>
 						<tbody>
 						{foreach from=$combinations key=id_product_attribute item=comb}
 						

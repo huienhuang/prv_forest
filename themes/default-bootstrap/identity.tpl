@@ -24,11 +24,11 @@
 *}
 
 {capture name=path}
-    <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+    <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" data-gg="">
         {l s='My account'}
     </a>
     <span class="navigation-pipe">
-        {$navigationPipe}
+        {$navigationPipe|escape:'html':'UTF-8'}
     </span>
     <span class="navigation_page">
         {l s='Your personal information'}

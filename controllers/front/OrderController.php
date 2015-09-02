@@ -207,6 +207,7 @@ class OrderControllerCore extends ParentOrderController
 				$this->autoStep();
 
 				// Bypass payment step if total is 0
+				/*
 				if (($id_order = $this->_checkFreeOrder()) && $id_order)
 				{
 					if ($this->context->customer->is_guest)
@@ -219,6 +220,7 @@ class OrderControllerCore extends ParentOrderController
 					else
 						Tools::redirect('index.php?controller=history');
 				}
+				*/
 				$this->_assignPayment();
 
 				if ($is_advanced_payment_api === true)

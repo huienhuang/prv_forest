@@ -130,7 +130,7 @@
 				<th class="last_item">{l s='Total price'}</th>
 			</tr>
 		</thead>
-		<tfoot>
+		<tfoot{if $order->current_state <= 3} style="display:none"{/if}>
 			{if $priceDisplay && $use_tax}
 				<tr class="item">
 					<td colspan="{if $return_allowed}2{else}1{/if}">
@@ -316,7 +316,7 @@
 							</td>
 						{/if}
 						<td class="price">
-							<label for="cb_{$product.id_order_detail|intval}">
+							<label for="cb_{$product.id_order_detail|intval}"{if $order->current_state <= 3} style="display:none"{/if}>
 							{if $group_use_tax}
 								{convertPriceWithCurrency price=$product.unit_price_tax_incl currency=$currency}
 							{else}
@@ -325,7 +325,7 @@
 							</label>
 						</td>
 						<td class="price">
-							<label for="cb_{$product.id_order_detail|intval}">
+							<label for="cb_{$product.id_order_detail|intval}"{if $order->current_state <= 3} style="display:none"{/if}>
 							{if $group_use_tax}
 								{convertPriceWithCurrency price=$product.total_price_tax_incl currency=$currency}
 							{else}

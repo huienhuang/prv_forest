@@ -30,7 +30,7 @@
 				{foreach from=$order_invoice->getOrderPaymentCollection() item=payment}
 					<tr>
 						<td class="right small">{$payment->payment_method}</td>
-						<td class="right small">{displayPrice currency=$payment->id_currency price=$payment->amount}</td>
+						<td class="right small">{if floatval($payment->amount)}{displayPrice currency=$payment->id_currency price=$payment->amount}{/if}</td>
 					</tr>
 				{/foreach}
 			</table>

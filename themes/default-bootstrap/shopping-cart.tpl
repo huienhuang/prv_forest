@@ -96,7 +96,7 @@
 					<th class="cart_total item text-right">{l s='Total'}</th>
 				</tr>
 			</thead>
-			<tfoot>
+			<tfoot style="display:none">
 				{assign var='rowspan_total' value=2+$total_discounts_num+$total_wrapping_taxes_num}
 
 				{if $use_taxes && $show_taxes && $total_tax != 0}

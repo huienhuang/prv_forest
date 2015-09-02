@@ -36,7 +36,7 @@ $(document).ready(function()
 		$input.autocomplete(
 			search_url,
 			{
-				minChars: 3,
+				minChars: 1,
 				max: 10,
 				width: (width_ac_results > 0 ? width_ac_results : 500),
 				selectFirst: false,

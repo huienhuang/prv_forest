@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <table id="total-tab" width="100%">
-
+{if floatval($footer.products_before_discounts_tax_excl)}
 	<tr>
 		<td class="grey" width="70%">
 			{l s='Total Products' pdf='true'}
@@ -32,7 +32,7 @@
 			{displayPrice currency=$order->id_currency price=$footer.products_before_discounts_tax_excl}
 		</td>
 	</tr>
-
+{/if}
 	{if $footer.product_discounts_tax_excl > 0}
 
 		<tr>
@@ -46,6 +46,7 @@
 
 	{/if}
 
+{if floatval($footer.shipping_tax_excl)}
 	<tr>
 		<td class="grey" width="70%">
 			{l s='Shipping Cost' pdf='true'}
@@ -58,7 +59,7 @@
 			{/if}
 		</td>
 	</tr>
-
+{/if}
 	{if $footer.wrapping_tax_excl > 0}
 		<tr>
 			<td class="grey">
@@ -67,7 +68,7 @@
 			<td class="white">{displayPrice currency=$order->id_currency price=$footer.wrapping_tax_excl}</td>
 		</tr>
 	{/if}
-
+{if floatval($footer.total_paid_tax_excl)}
 	<tr class="bold">
 		<td class="grey">
 			{l s='Total (Tax excl.)' pdf='true'}
@@ -76,6 +77,7 @@
 			{displayPrice currency=$order->id_currency price=$footer.total_paid_tax_excl}
 		</td>
 	</tr>
+{/if}
 	{if $footer.total_taxes > 0}
 	<tr class="bold">
 		<td class="grey">
@@ -86,12 +88,16 @@
 		</td>
 	</tr>
 	{/if}
+
 	<tr class="bold big">
 		<td class="grey">
 			{l s='Total' pdf='true'}
 		</td>
 		<td class="white">
+			{if floatval($footer.total_paid_tax_incl)}
 			{displayPrice currency=$order->id_currency price=$footer.total_paid_tax_incl}
+			{/if}
 		</td>
 	</tr>
+
 </table>

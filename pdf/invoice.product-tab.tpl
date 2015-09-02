@@ -28,15 +28,15 @@
 	<tr>
 		<th class="product header small" width="{$layout.reference.width}%">{l s='Reference' pdf='true'}</th>
 		<th class="product header small" width="{$layout.product.width}%">{l s='Product' pdf='true'}</th>
-		<th class="product header small" width="{$layout.tax_code.width}%">{l s='Tax Rate' pdf='true'}</th>
+		<th class="product header small" width="{$layout.tax_code.width}%">{l s='Tax' pdf='true'}</th>
 
 		{if isset($layout.before_discount)}
-			<th class="product header small" width="{$layout.unit_price_tax_excl.width}%">{l s='Base price' pdf='true'} <br /> {l s='(Tax excl.)' pdf='true'}</th>
+			<th class="product header small" width="{$layout.unit_price_tax_excl.width}%">{l s='Base price' pdf='true'}</th>
 		{/if}
 
-		<th class="product header-right small" width="{$layout.unit_price_tax_excl.width}%">{l s='Unit Price' pdf='true'} <br /> {l s='(Tax excl.)' pdf='true'}</th>
+		<th class="product header-right small" width="{$layout.unit_price_tax_excl.width}%">{l s='Unit Price' pdf='true'}</th>
 		<th class="product header small" width="{$layout.quantity.width}%">{l s='Qty' pdf='true'}</th>
-		<th class="product header-right small" width="{$layout.total_tax_excl.width}%">{l s='Total' pdf='true'} <br /> {l s='(Tax excl.)' pdf='true'}</th>
+		<th class="product header-right small" width="{$layout.total_tax_excl.width}%">{l s='Total' pdf='true'}</th>
 	</tr>
 	</thead>
 
@@ -85,17 +85,21 @@
 			{/if}
 
 			<td class="product right">
+				{if floatval($order_detail.unit_price_tax_excl_including_ecotax)}
 				{displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_excl_including_ecotax}
 				{if $order_detail.ecotax_tax_excl > 0}
 					<br>
 					<small>{{displayPrice currency=$order->id_currency price=$order_detail.ecotax_tax_excl}|string_format:{l s='ecotax: %s' pdf='true'}}</small>
+				{/if}
 				{/if}
 			</td>
 			<td class="product center">
 				{$order_detail.product_quantity}
 			</td>
 			<td  class="product right">
+				{if floatval($order_detail.total_price_tax_excl_including_ecotax)}
 				{displayPrice currency=$order->id_currency price=$order_detail.total_price_tax_excl_including_ecotax}
+				{/if}
 			</td>
 		</tr>
 

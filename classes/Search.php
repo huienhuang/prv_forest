@@ -439,6 +439,9 @@ class SearchCore
 						case 'pa_upc':
 							$sql .= ', pa.upc AS pa_upc';
 						break;
+						case 'pa_short_desc':
+							$sql .= ', pa.short_desc AS pa_short_desc';
+						break;
 					}
 		return $sql;
 	}
@@ -529,8 +532,15 @@ class SearchCore
 	 */
 	protected static function getAttributesFields($db, $id_product, $sql_attribute)
 	{
-		return $db->executeS('SELECT id_product '.$sql_attribute.' FROM '.
+		$rows = $db->executeS('SELECT id_product '.$sql_attribute.' FROM '.
 										   _DB_PREFIX_.'product_attribute pa WHERE pa.id_product = '.(int)$id_product, true, false);
+	
+		foreach($rows as &$row) {
+			$v = explode('|', $row['pa_short_desc']);
+			$row['pa_short_desc'] = $v[0];
+		}
+		
+		return $rows;
 	}
 
 	/**
@@ -622,7 +632,8 @@ class SearchCore
 			'mname' => Configuration::get('PS_SEARCH_WEIGHT_MNAME'),
 			'tags' => Configuration::get('PS_SEARCH_WEIGHT_TAG'),
 			'attributes' => Configuration::get('PS_SEARCH_WEIGHT_ATTRIBUTE'),
-			'features' => Configuration::get('PS_SEARCH_WEIGHT_FEATURE')
+			'features' => Configuration::get('PS_SEARCH_WEIGHT_FEATURE'),
+			'pa_short_desc' => Configuration::get('PS_SEARCH_WEIGHT_PNAME'),
 		);
 
 		// Those are kind of global variables required to save the processed data in the database every X occurrences, in order to avoid overloading MySQL

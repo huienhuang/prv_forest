@@ -405,7 +405,7 @@ class FrontControllerCore extends Controller
 
 		/* Breadcrumb */
 		$navigation_pipe = (Configuration::get('PS_NAVIGATION_PIPE') ? Configuration::get('PS_NAVIGATION_PIPE') : '>');
-		$this->context->smarty->assign('navigationPipe', $navigation_pipe);
+		$this->context->smarty->assign('navigationPipe', htmlentities($navigation_pipe, ENT_QUOTES, "UTF-8"));
 
 		// Automatically redirect to the canonical URL if needed
 		if (!empty($this->php_self) && !Tools::getValue('ajax'))
