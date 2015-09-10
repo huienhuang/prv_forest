@@ -142,7 +142,7 @@ var ajaxCart = {
 			e.preventDefault();
 			
 			var cmb = [];
-			var lst = $('#buy_block .product_attributes .quantity_wanted_p >input[type="number"]');
+			var lst = $('#prod_attrs_tbl .quantity_wanted_p >input[type="number"]');
 			for(var i = 0; i < lst.length; i++) {
 				var v = $(lst[i]);
 				var qty = parseInt(v.val());

@@ -212,6 +212,36 @@ $(document).ready(function()
 		if (url.indexOf('#') != -1)
 			getProductAttribute();
 	}
+	
+	
+	$('#prod_attrs_tbl >div').mouseenter(function() {
+		var id_attr = $(this).data('id-prod-attr');
+		if(!id_attr) return;
+		
+		for(var combination = 0; combination < combinations.length; combination++) {
+			if(combinations[combination].idCombination === id_attr) {
+				//console.log(combinations[combination]['image']);
+				if(combinations[combination]['image'] && combinations[combination]['image'] != -1)
+					displayImage($('#thumb_' + combinations[combination]['image']).parent());
+				else
+					displayImage($('#thumb_0'));
+				break;
+			}
+		}
+		
+		
+	});/*.click(function() {
+		var id_attr = $(this).data('id-prod-attr');
+		if(!id_attr) return;
+		
+		for(var combination = 0; combination < combinations.length; combination++) {
+			if(combinations[combination].idCombination === id_attr) {
+				refreshProductImages(combinations[combination]['idCombination']);
+				break;
+			}
+		}
+	});*/
+	
 });
 
 $(window).resize(function(){
@@ -408,11 +438,18 @@ function findCombination()
 
 	if (typeof combinations == 'undefined' || !combinations)
 		combinations = [];
-		
-	if(default_combination_idx >= 0 && combinations[default_combination_idx] !== undefined) {
-		choice = combinations[default_combination_idx]['idsAttributes'];
+	
+	if(g_default_choice)
+		choice = g_default_choice;
+	else {
+		if(default_combination_idx >= 0 && combinations[default_combination_idx] !== undefined) {
+			choice = combinations[default_combination_idx]['idsAttributes'];
+		}
 	}
-		
+	
+	var _id = parseInt( $('#idCombination').val() );
+	if (_id) $('#prod_attrs_tbl >div[data-id-prod-attr="'+_id+'"]').removeClass('default_attr');
+	
 	//testing every combination to find the conbination's attributes' case of the user
 	for (var combination = 0; combination < combinations.length; ++combination)
 	{
@@ -449,9 +486,8 @@ function findCombination()
 				selectedCombination['ecotax'] = default_eco_tax;
 
 			//show the large image in relation to the selected combination
-			if (combinations[combination]['image'] && combinations[combination]['image'] != -1)
-				displayImage($('#thumb_' + combinations[combination]['image']).parent());
-
+			
+			var _idCombination = combinations[combination]['idCombination'];
 			//show discounts values according to the selected combination
 			if (combinations[combination]['idCombination'] && combinations[combination]['idCombination'] > 0)
 				displayDiscounts(combinations[combination]['idCombination']);
@@ -466,11 +502,19 @@ function findCombination()
 			{
 				refreshProductImages(0);
 				firstTime = false;
+				
 			}
-			else
+			else {
+				if (combinations[combination]['image'] && combinations[combination]['image'] != -1)
+					displayImage($('#thumb_' + combinations[combination]['image']).parent());
+				
 				refreshProductImages(combinations[combination]['idCombination']);
+			}
+			
+			$('#prod_attrs_tbl >div[data-id-prod-attr="'+_idCombination+'"]').addClass('default_attr');
+			
 			//leave the function because combination has been found
-			return;
+			return _idCombination;
 		}
 	}
 
@@ -480,6 +524,8 @@ function findCombination()
 		delete selectedCombination['available_date'];
 
 	updateDisplay();
+	
+	return 0;
 }
 
 //update display of the availability of the product AND the prices of the product
@@ -1089,6 +1135,10 @@ function getProductAttribute()
 	window.location.replace(url + request);
 }
 
+
+
+var g_default_choice = null;
+
 function checkUrl()
 {
 	if (original_url != window.location || first_url_check)
@@ -1112,14 +1162,17 @@ function checkUrl()
 			// fill html with values
 			$('.color_pick').removeClass('selected').parent().parent().children().removeClass('selected');
 
+			g_default_choice = [];
 			count = 0;
 			for (var z in tabValues)
 				for (var a in attributesCombinations)
-					if (attributesCombinations[a]['group'] === decodeURIComponent(tabValues[z][1])
-						&& attributesCombinations[a]['id_attribute'] === decodeURIComponent(tabValues[z][0]))
+					if (attributesCombinations[a]['group'] === decodeURIComponent(tabValues[z][0])
+						&& attributesCombinations[a]['attribute'] === decodeURIComponent(tabValues[z][1]))
 					{
+						g_default_choice.push(parseInt(attributesCombinations[a]['id_attribute']));
+						
 						count++;
-
+/*
 						// add class 'selected' to the selected color
 						$('#color_' + attributesCombinations[a]['id_attribute']).addClass('selected').parent().addClass('selected');
 						$('input:radio[value=' + attributesCombinations[a]['id_attribute'] + ']').prop('checked', true);
@@ -1127,13 +1180,14 @@ function checkUrl()
 						$('select[name=group_' + attributesCombinations[a]['id_attribute_group'] + ']').val(attributesCombinations[a]['id_attribute']);
 						if (!!$.prototype.uniform)
 							$.uniform.update('input[name=group_' + attributesCombinations[a]['id_attribute_group'] + '], select[name=group_' + attributesCombinations[a]['id_attribute_group'] + ']');
-
+*/
 					}
 			// find combination and select corresponding thumbs
 			if (count)
 			{
 				if (firstTime)
 				{
+					
 					firstTime = false;
 					findCombination();
 				}

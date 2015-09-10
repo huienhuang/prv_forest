@@ -489,7 +489,7 @@ class ProductControllerCore extends FrontController
 						if (isset($this->context->smarty->tpl_vars['cover']->value))
 							$current_cover = $this->context->smarty->tpl_vars['cover']->value;
 
-						if (is_array($combination_images[$row['id_product_attribute']]))
+						if (is_array($combination_images[$row['id_product_attribute']]) && false)
 						{
 							foreach ($combination_images[$row['id_product_attribute']] as $tmp)
 								if ($tmp['id_image'] == $current_cover['id_image'])
@@ -499,7 +499,7 @@ class ProductControllerCore extends FrontController
 								}
 						}
 
-						if ($id_image > 0)
+						if ($id_image > 0 && false)
 						{
 							if (isset($this->context->smarty->tpl_vars['images']->value))
 								$product_images = $this->context->smarty->tpl_vars['images']->value;

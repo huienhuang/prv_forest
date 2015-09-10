@@ -545,6 +545,7 @@ class CartCore extends ObjectModel
 		{
 			$sql->select('
 				product_attribute_shop.`price` AS price_attribute, product_attribute_shop.`ecotax` AS ecotax_attr,
+				pa.short_desc,
 				IF (IFNULL(pa.`reference`, \'\') = \'\', p.`reference`, pa.`reference`) AS reference,
 				(p.`weight`+ pa.`weight`) weight_attribute,
 				IF (IFNULL(pa.`ean13`, \'\') = \'\', p.`ean13`, pa.`ean13`) AS ean13,
@@ -597,6 +598,11 @@ class CartCore extends ObjectModel
 
 		foreach ($result as &$row)
 		{
+			$sp = explode('|', $row['short_desc'] ? $row['short_desc'] : '');
+			$row['short_desc'] = $sp[0];
+			$row['sd_size'] = isset($sp[1]) ? $sp[1] : '';
+			$row['sd_count'] = isset($sp[2]) ? $sp[2] : '';
+			
 			if (isset($row['ecotax_attr']) && $row['ecotax_attr'] > 0)
 				$row['ecotax'] = (float)$row['ecotax_attr'];
 

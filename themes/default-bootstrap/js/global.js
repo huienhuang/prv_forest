@@ -226,8 +226,8 @@ function quick_view()
 		if (!!$.prototype.fancybox)
 			$.fancybox({
 				'padding':  0,
-				'width':    580,
-				'height':   400,
+				'width':    1087,
+				'height':   610,
 				'type':     'iframe',
 				'href':     url + 'content_only=1' + anchor
 			});

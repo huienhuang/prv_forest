@@ -69,7 +69,7 @@ class ImageCore extends ObjectModel
 			'id_product' => array('type' => self::TYPE_INT, 'shop' => 'both', 'validate' => 'isUnsignedId', 'required' => true),
 			'position' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
 			'cover' => 		array('type' => self::TYPE_BOOL, 'allow_null' => true, 'validate' => 'isBool', 'shop' => true),
-			'legend' => 	array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 128),
+			'legend' => 	array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isString', 'size' => 128),
 		),
 	);
 

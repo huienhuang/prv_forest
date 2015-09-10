@@ -62,11 +62,15 @@
 			</p>
 		{/if}
 		
-		{if !$content_only}
 		<!-- left infos-->
-		<div class="pb-left-column col-xs-12 col-sm-4 col-md-5" style="overflow:hidden">
+		{if !$content_only}
+		<div class="pb-left-column col-xs-12 col-sm-6 col-md-6" style="overflow:hidden">
+		{else}
+		<div class="pb-left-column hidden-xs col-sm-6 col-md-6" style="overflow:hidden">
+		{/if}	
 			<!-- product img-->
 			<div id="image-block" class="clearfix">
+				<a id="thumb_0" href="img/p/en-default-thickbox_default.jpg" title="No Image"></a>
 				{if $product->new}
 					<span class="new-box">
 						<span class="new-label">{l s='New'}</span>
@@ -152,16 +156,11 @@
 			{/if}
 		</div> <!-- end pb-left-column -->
 		<!-- end left infos-->
-
-		<div class="col-xs-12 hidden-sm hidden-md hidden-lg">&nbsp;</div>
-		{/if}
 		
 		<!-- pb-right-column-->
-		{if !$content_only}
-		<div class="pb-right-column col-xs-12 col-sm-8 col-md-7">
-		{else}
-		<div class="pb-right-column_ col-xs-12 col-sm-12 col-md-12">
-		{/if}
+
+		<div class="pb-right-column col-xs-12 col-sm-6 col-md-6">
+
 			{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 			<!-- add to cart form-->
 			<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
@@ -210,40 +209,44 @@
 				
 					<div class="product_attributes clearfix">
 						{if isset($combinations)}
-						<table class="table" id="prod_attrs_tbl">
-						<thead><tr><th>Model</th><th>Description</th><th>Count</th><th>Size</th></tr></thead>
-						<tbody>
+			
+						<div id="prod_attrs_tbl">
+						<div class="row">
+							<div class="col-xs-3">Model</div>
+							<div class="col-xs-4">Description</div>
+							<div class="col-xs-2">Count</div>
+							<div class="col-xs-3">Size</div>
+						</div>	
 						{foreach from=$combinations key=id_product_attribute item=comb}
-						
-						<tr>
-							<td>{$comb['reference']|escape:'html':'UTF-8'}</td>
-							<td>{$comb['short_desc'][0]|escape:'html':'UTF-8'}</td>
-							<td>{if isset($comb['short_desc'][2])}{$comb['short_desc'][2]|escape:'html':'UTF-8'}{/if}</td>
-							<td>{if isset($comb['short_desc'][1])}{$comb['short_desc'][1]|escape:'html':'UTF-8'}{/if}</td>
-						</tr>
-						<tr>
-						<td colspan="4">
+						<div class="row" data-id-prod-attr="{$id_product_attribute}">
+							<a style="display:block" href="{$link->getProductLink($product->id, $product->link_rewrite, $product->category, null, null, $product->id_shop_default, $id_product_attribute)|escape:'html':'UTF-8'}">
+							<div class="col-xs-3">{$comb['reference']|escape:'html':'UTF-8'}</div>
+							<div class="col-xs-4">{$comb['short_desc'][0]|escape:'html':'UTF-8'}</div>
+							<div class="col-xs-2 visible-xs-block">{if isset($comb['short_desc'][2]) && $comb['short_desc'][2]}{$comb['short_desc'][2]|escape:'html':'UTF-8'}{else}{/if}</div>
+							<div class="col-xs-3 visible-xs-block">{if isset($comb['short_desc'][1]) && $comb['short_desc'][1]}{$comb['short_desc'][1]|escape:'html':'UTF-8'}{else}{/if}</div>
+							<div class="clearfix visible-xs-block"></div>
+							<div class="col-xs-12">
 							<p class="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
 							{if $comb['default_on']}
 							<input type="number" name="cmb[{$id_product_attribute}]" id="quantity_wanted_{$id_product_attribute}" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
 							{else}
 							<input type="number" name="cmb[{$id_product_attribute}]" id="quantity_wanted_{$id_product_attribute}" class="text" value="0" />
 							{/if}
-							<a href="#" data-field-qty="cmb[{$id_product_attribute}]" class="btn btn-default button-minus product_quantity_down">
+							<button href="#" data-field-qty="cmb[{$id_product_attribute}]" class="btn btn-default button-minus product_quantity_down">
 								<span><i class="icon-minus"></i></span>
-							</a>
-							<a href="#" data-field-qty="cmb[{$id_product_attribute}]" class="btn btn-default button-plus product_quantity_up">
+							</button>
+							<button href="#" data-field-qty="cmb[{$id_product_attribute}]" class="btn btn-default button-plus product_quantity_up">
 								<span><i class="icon-plus"></i></span>
-							</a>
-							<span class="clearfix"></span>
+							</button>
 							</p>
-						</td>
-						</tr>
-						
-						
+							
+							</div>
+							<div class="clearfix visible-xs-block"></div>
+							</a>
+						</div>
 						{/foreach}
-						</tbody>
-						</table>
+						</div>
+						
 						{else}
 						<p id="quantity_wanted_p" class="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
 							{if $product->price}<label for="quantity_wanted">${$product->price|string_format:"%.2f"}</label>{/if}

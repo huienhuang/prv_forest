@@ -1770,12 +1770,23 @@ class AdminImportControllerCore extends AdminController
 						$error = false;
 						if (!empty($url))
 						{
-							$url = str_replace(' ', '%20', $url);
+							//$url = str_replace(' ', '%20', $url);
 
 							$image = new Image();
 							$image->id_product = (int)$product->id;
 							$image->position = Image::getHighestPosition($product->id) + 1;
-							$image->cover = (!$key && !$product_has_images) ? true : false;
+							//$image->cover = (!$key && !$product_has_images) ? true : false;
+							if($url[0] === '!') {
+								$url = substr($url, 1);
+								$image->cover = true;
+							} else {
+								$image->cover = false;
+							}
+							
+							$sp = explode('^', $url);
+							$url = $sp[0];
+							if(isset($sp[1]) && $sp[1]) $image->legend = $sp[1];
+							
 							// file_exists doesn't work with HTTP protocol
 							if (($field_error = $image->validateFields(UNFRIENDLY_ERROR, true)) === true &&
 								($lang_field_error = $image->validateFieldsLang(UNFRIENDLY_ERROR, true)) === true && $image->add())

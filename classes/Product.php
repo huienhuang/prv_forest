@@ -5442,7 +5442,7 @@ class ProductCore extends ObjectModel
 		foreach ($attributes as &$a)
 		{
 			foreach ($a as &$b)
-				$b = str_replace($sep, '_', Tools::link_rewrite($b));
+				$b = str_replace($sep, '_', Tools::link_rewrite(str_replace(array(',', '.'), '-', $b)));
 			$anchor .= '/'.($with_id && isset($a['id_attribute']) && $a['id_attribute']? (int)$a['id_attribute'].$sep : '').$a['group'].$sep.$a['name'];
 		}
 		return $anchor;
