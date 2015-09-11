@@ -115,6 +115,23 @@ if (typeof combinations !== 'undefined' && combinations)
 }
 /* */
 
+
+function show_img(id_attr) {
+	for(var combination = 0; combination < combinations.length; combination++) {
+		if(combinations[combination].idCombination === id_attr) {
+			//console.log(combinations[combination]['image']);
+			if(combinations[combination]['image'] && combinations[combination]['image'] != -1)
+				displayImage($('#thumb_' + combinations[combination]['image']).parent());
+			else
+				displayImage($('#thumb_0'));
+			break;
+		}
+	}
+}
+
+var g_last_attr_hover_id = 0;
+var g_last_attr_hover_timer = null;
+
 $(document).ready(function()
 {
 	var url_found = checkUrl();
@@ -215,22 +232,38 @@ $(document).ready(function()
 	
 	
 	$('#prod_attrs_tbl >div').mouseenter(function() {
-		var id_attr = $(this).data('id-prod-attr');
+		var id_attr = parseInt( $(this).data('id-prod-attr') );
 		if(!id_attr) return;
+		g_last_attr_hover_id = id_attr;
 		
-		for(var combination = 0; combination < combinations.length; combination++) {
-			if(combinations[combination].idCombination === id_attr) {
-				//console.log(combinations[combination]['image']);
-				if(combinations[combination]['image'] && combinations[combination]['image'] != -1)
-					displayImage($('#thumb_' + combinations[combination]['image']).parent());
-				else
-					displayImage($('#thumb_0'));
-				break;
-			}
+		if(g_last_attr_hover_timer) {
+			clearTimeout(g_last_attr_hover_timer);
+			g_last_attr_hover_timer = null;
 		}
 		
+		show_img(id_attr);
 		
-	});/*.click(function() {
+	}).mouseleave(function() {
+		var id_attr = parseInt( $(this).data('id-prod-attr') );
+		if(!id_attr) return;
+		if(g_last_attr_hover_id !== id_attr) return;
+		
+		if(g_last_attr_hover_timer) {
+			clearTimeout(g_last_attr_hover_timer);
+			g_last_attr_hover_timer = null;
+		}
+		
+		g_last_attr_hover_timer = setTimeout(function() {
+			if(g_last_attr_hover_id !== id_attr) return;
+			
+			var cur_id_attr = parseInt($('#idCombination').val());
+			if(cur_id_attr && cur_id_attr !== g_last_attr_hover_id) show_img(cur_id_attr);
+			
+		}, 500);
+	});
+	
+	
+	/*.click(function() {
 		var id_attr = $(this).data('id-prod-attr');
 		if(!id_attr) return;
 		

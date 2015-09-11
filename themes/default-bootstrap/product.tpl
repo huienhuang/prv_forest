@@ -227,7 +227,7 @@
 							<div class="clearfix visible-xs-block"></div>
 							<div class="col-xs-12">
 							<p class="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
-							{if $comb['default_on']}
+							{if false && $comb['default_on']}
 							<input type="number" name="cmb[{$id_product_attribute}]" id="quantity_wanted_{$id_product_attribute}" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
 							{else}
 							<input type="number" name="cmb[{$id_product_attribute}]" id="quantity_wanted_{$id_product_attribute}" class="text" value="0" />
